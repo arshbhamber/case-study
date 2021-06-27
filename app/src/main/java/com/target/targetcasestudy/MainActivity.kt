@@ -5,7 +5,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.target.targetcasestudy.ui.detail.DealItemFragment
+import com.target.targetcasestudy.ui.detail.DealDetailFragment
 import com.target.targetcasestudy.ui.list.DealListFragment
 import com.target.targetcasestudy.ui.payment.PaymentDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,9 +33,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun addObservers() {
 
-        viewModel.selectedDeal.observe(this, {
-            showDealItemFragment()
-        })
+//        viewModel.selectedDeal.observe(this, {
+//            showDealItemFragment()
+//        })
 
     }
 
@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
                 R.anim.exit_to_right
             )
 
-            .replace(R.id.container, DealItemFragment())
+            .replace(R.id.container, DealDetailFragment())
             .addToBackStack("item")
             .commit()
 

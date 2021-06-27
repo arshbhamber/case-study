@@ -2,7 +2,11 @@ package com.target.targetcasestudy.di
 
 import android.content.Context
 import com.target.targetcasestudy.R
-import com.target.targetcasestudy.data.network.ApiService
+import com.target.targetcasestudy.data.repository.DealRepository
+import com.target.targetcasestudy.data.local.AppDatabase
+import com.target.targetcasestudy.data.local.DealDao
+import com.target.targetcasestudy.data.network.DealService
+import com.target.targetcasestudy.data.repository.DealRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,7 +21,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class AppModule {
+object AppModule {
 
     @Singleton
     @Provides
@@ -55,6 +59,22 @@ class AppModule {
     @Provides
     fun provideApiService(
         retrofit: Retrofit
-    ): ApiService = retrofit.create(ApiService::class.java)
+    ): DealService = retrofit.create(DealService::class.java)
 
+    @Provides
+    fun provideDealRepository(repository: DealRepositoryImpl): DealRepository {
+        return repository
+    }
+
+    @Singleton
+    @Provides
+    fun provideDatabase(@ApplicationContext context: Context): AppDatabase{
+        return AppDatabase.getDatabase(context)
+    }
+
+    @Singleton
+    @Provides
+    fun provideDealDao(database: AppDatabase): DealDao{
+        return database.dealDao()
+    }
 }

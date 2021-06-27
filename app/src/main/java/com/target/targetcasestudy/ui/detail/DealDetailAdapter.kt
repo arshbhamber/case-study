@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.target.targetcasestudy.data.entities.Deal
 import com.target.targetcasestudy.data.model.DealDetailItemType
-import com.target.targetcasestudy.data.model.DealItem
 import com.target.targetcasestudy.data.model.DealDetailItemWrapper
 import com.target.targetcasestudy.databinding.DealItemDetailBinding
 import com.target.targetcasestudy.databinding.TextItemBinding
@@ -46,7 +46,7 @@ class DealDetailAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
         when (list[position].type) {
-            DealDetailItemType.DEAL_TOP_VIEW -> (holder as DealDetailViewHolder).setupUI(list[position].data as DealItem)
+            DealDetailItemType.DEAL_TOP_VIEW -> (holder as DealDetailViewHolder).setupUI(list[position].data as Deal)
             DealDetailItemType.DEAL_TEXT_VIEW  -> (holder as TextViewHolder).updateData(list[position].data as String)
         }
 
@@ -62,7 +62,7 @@ class DealDetailAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     ) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun setupUI(deal: DealItem) {
+        fun setupUI(deal: Deal) {
 
             Glide.with(binding.root.context).load(deal.image_url).into(binding.imageView)
             binding.tvTitle.text = deal.title

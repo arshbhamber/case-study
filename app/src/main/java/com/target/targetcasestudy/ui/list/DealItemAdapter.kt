@@ -4,12 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.target.targetcasestudy.data.model.DealItem
+import com.target.targetcasestudy.data.entities.Deal
 import com.target.targetcasestudy.databinding.DealListItemBinding
 
 class DealItemAdapter : RecyclerView.Adapter<DealItemAdapter.DealItemViewHolder>() {
 
-    var dealsList: List<DealItem>? = null
+    var dealsList: List<Deal>? = null
     var listener: Listener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DealItemViewHolder {
@@ -30,7 +30,7 @@ class DealItemAdapter : RecyclerView.Adapter<DealItemAdapter.DealItemViewHolder>
         private val binding: DealListItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun setup(item: DealItem) {
+        fun setup(item: Deal) {
 
             binding.dealListItemImageView.apply {
                 setOnClickListener{
@@ -50,5 +50,5 @@ class DealItemAdapter : RecyclerView.Adapter<DealItemAdapter.DealItemViewHolder>
 
 
 interface Listener{
-    fun itemCLicked(item: DealItem)
+    fun itemCLicked(item: Deal)
 }

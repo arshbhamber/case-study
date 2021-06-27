@@ -1,22 +1,32 @@
 package com.target.targetcasestudy.data
 
-import com.target.targetcasestudy.data.model.DealItem
-import com.target.targetcasestudy.data.model.Deals
-import com.target.targetcasestudy.data.network.ApiService
-import retrofit2.Callback
-import javax.inject.Inject
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.liveData
+import androidx.lifecycle.map
+import com.target.targetcasestudy.data.network.Resource
+import kotlinx.coroutines.Dispatchers
 
+abstract class AppRepository {
 
-class AppRepository @Inject constructor(
-    private val apiService: ApiService
-) {
+    fun <T,A> performGetOperation(
+        databaseQuery: () -> LiveData<T>,
+        networkCall: suspend () -> Resource<A>,
+        saveCallResult: suspend (A) -> Unit
+    ): LiveData<Resource<T>> =
 
-    fun fetchListOfDeals(callback: Callback<Deals>){
-        return apiService.getListOfDeals().enqueue(callback)
-    }
+        liveData(Dispatchers.IO){
+            emit(Resource.loading())
+            val source = databaseQuery.invoke().map { Resource.success(it) }
+            emitSource(source)
 
-    fun fetchDealItem(id: Int, callback: Callback<DealItem>){
-        return apiService.getDealItem(id).enqueue(callback)
-    }
+            val responseStatus = networkCall.invoke()
+            if(responseStatus.status == Resource.Status.SUCCESS){
+                saveCallResult(responseStatus.data!!)
+            }else if(responseStatus.status == Resource.Status.ERROR){
+                emit(Resource.error(responseStatus.message!!))
+                emitSource(source)
+            }
+
+        }
 
 }

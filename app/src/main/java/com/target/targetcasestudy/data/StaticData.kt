@@ -1,12 +1,12 @@
 package com.target.targetcasestudy.data
 
-import com.target.targetcasestudy.data.model.DealItem
+import com.target.targetcasestudy.data.entities.Deal
 import com.target.targetcasestudy.data.model.Price
 
 // TODO this can be deleted once you start fetching the data from the API
 object StaticData {
-  val deals: List<DealItem> = listOf(
-    DealItem(
+  val deals: List<Deal> = listOf(
+    Deal(
       id = 0,
       title = "Product 1",
       description = "This is product number 1",
@@ -16,7 +16,7 @@ object StaticData {
       regular_price = Price(1,"",""),
       sale_price =  Price(1,"","")
     ),
-    DealItem(
+    Deal(
       id = 0,
       title = "Product 2",
       description = "This is product number 2",
@@ -26,7 +26,7 @@ object StaticData {
       regular_price = Price(1,"",""),
       sale_price =  Price(1,"","")
     ),
-    DealItem(
+    Deal(
       id = 0,
       title = "Product 3",
       description = "This is product number 3",
@@ -36,7 +36,7 @@ object StaticData {
       regular_price = Price(1,"",""),
       sale_price =  Price(1,"","")
     ),
-    DealItem(
+    Deal(
       id = 0,
       title = "Product 4",
       description = "This is product number 4",
@@ -46,7 +46,7 @@ object StaticData {
       regular_price = Price(1,"",""),
       sale_price =  Price(1,"","")
     ),
-    DealItem(
+    Deal(
       id = 0,
       title = "Product 5",
       description = "This is product number 5",
@@ -56,7 +56,7 @@ object StaticData {
       regular_price = Price(1,"",""),
       sale_price =  Price(1,"","")
     ),
-    DealItem(
+    Deal(
       id = 0,
       title = "Product 6",
       description = "This is product number 6",
@@ -66,7 +66,7 @@ object StaticData {
       regular_price = Price(1,"",""),
       sale_price =  Price(1,"","")
     ),
-    DealItem(
+    Deal(
       id = 0,
       title = "Product 7",
       description = "This is product number 7",
@@ -76,7 +76,7 @@ object StaticData {
       regular_price = Price(1,"",""),
       sale_price =  Price(1,"","")
     ),
-    DealItem(
+    Deal(
       id = 0,
       title = "Product 8",
       description = "This is product number 8",
@@ -86,7 +86,7 @@ object StaticData {
       regular_price = Price(1,"",""),
       sale_price =  Price(1,"","")
     ),
-    DealItem(
+    Deal(
       id = 0,
       title = "Product 9",
       description = "This is product number 9",
@@ -96,7 +96,7 @@ object StaticData {
       regular_price = Price(1,"",""),
       sale_price =  Price(1,"","")
     ),
-    DealItem(
+    Deal(
       id = 0,
       title = "Product 10",
       description = "This is product number 10",
